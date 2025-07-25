@@ -11,8 +11,8 @@ internal class Program
 {
     private const int BUFFER_SIZE = 1024 * 1024;
 
-    private const string d = "problems.txt";
-    private const string s = "logfile_normalized.log";
+    private const string ErrorsPath = "problems.txt";
+    private const string NormalizedPath = "logfile_normalized.log";
 
     private static async Task Main(string[] args)
     {
@@ -29,8 +29,8 @@ internal class Program
 
     private static async Task Process(string file, LogProcessor processor)
     {
-        await using var writer = new StreamWriter(s, false);
-        await using var errors = new StreamWriter(d, false);
+        await using var errors = new StreamWriter(ErrorsPath, false);
+        await using var writer = new StreamWriter(NormalizedPath, false);
 
         using var readerLog = new StreamReader(new BufferedStream(File.OpenRead(file), BUFFER_SIZE));
 
